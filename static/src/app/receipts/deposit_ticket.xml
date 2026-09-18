@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="addons_pressing_pos.DepositTicket">
+        <div class="pos-receipt laundry-deposit">
+            <div class="laundry-deposit-title">DEPOSIT</div>
+
+            <div class="laundry-deposit-number" t-esc="order.laundry_number_display"/>
+
+            <div class="laundry-deposit-pickup">
+                <div class="laundry-deposit-pickup-label">Ready</div>
+                <div class="laundry-deposit-pickup-value" t-esc="order.formattedPickupDate"/>
+            </div>
+
+            <div t-if="customerName" class="laundry-deposit-customer" t-esc="customerName"/>
+
+            <div class="laundry-deposit-lines">
+                <div t-foreach="depositLines" t-as="row" t-key="row.uuid"
+                     class="laundry-deposit-row">
+                    <span class="laundry-deposit-qty" t-esc="row.qty"/>
+                    <span class="laundry-deposit-name" t-esc="row.label"/>
+                </div>
+            </div>
+
+            <div class="laundry-deposit-totals">
+                <div>
+                    <span>Garments: </span>
+                    <span class="fw-bolder" t-esc="garmentCount"/>
+                </div>
+                <div>
+                    <span>Total: </span>
+                    <span class="fw-bolder" t-esc="total"/>
+                </div>
+            </div>
+
+            <div class="laundry-deposit-footer">
+                Please bring this ticket to collect your garments.
+            </div>
+        </div>
+    </t>
+
+</templates>

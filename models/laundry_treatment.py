@@ -14,7 +14,7 @@ class LaundryTreatment(models.Model):
     active = fields.Boolean(default=True)
 
     @api.model
-    def _load_pos_data_domain(self, data):
+    def _load_pos_data_domain(self, data, config):
         return [('active', '=', True)]
 
     @api.model

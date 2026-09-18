@@ -12,12 +12,17 @@
         'views/laundry_treatment_views.xml',
         'views/product_views.xml',
         'views/pos_order_views.xml',
+        'views/pos_config_views.xml',
+        'views/res_config_settings_views.xml',
+        # Last: it builds the pressing shop, and the scenario it loads refers
+        # to products and categories, not to anything declared above.
+        'data/pressing_store_data.xml',
     ],
     'assets': {
         'point_of_sale._assets_pos': [
-            'pos_pressing_methode/static/src/app/**/*.js',
-            'pos_pressing_methode/static/src/app/**/*.xml',
-            'pos_pressing_methode/static/src/scss/*.scss',
+            'addons_pressing_pos/static/src/app/**/*.js',
+            'addons_pressing_pos/static/src/app/**/*.xml',
+            'addons_pressing_pos/static/src/scss/*.scss',
         ],
     },
     'installable': True,

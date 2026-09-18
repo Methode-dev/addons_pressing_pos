@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="addons_pressing_pos.ControlButtons"
+       t-inherit="point_of_sale.ControlButtons"
+       t-inherit-mode="extension">
+
+        <!-- Always-visible row, on regular screens. Pickup date and
+             specificities are set on essentially every order here, so they do
+             not belong two taps deep behind "More". Reprint joins them only
+             once the order has a number, which is also when it becomes
+             useful. -->
+        <xpath expr="//button[hasclass('more-btn')]" position="before">
+            <t t-if="pos.config.laundry_mode and !props.showRemainingButtons">
+                <PickupDateButton/>
+                <SpecificitiesButton/>
+                <ReprintButton t-if="pos.getOrder()?.laundry_number"/>
+            </t>
+        </xpath>
+
+        <!-- On a small screen the visible row is not rendered at all, so the
+             same buttons have to be reachable from the "More" dialog. -->
+        <xpath expr="//div[hasclass('control-buttons-modal')]" position="inside">
+            <t t-if="pos.config.laundry_mode and pos.isSmallProductScreen">
+                <PickupDateButton class="buttonClass" showLabel="true"/>
+                <SpecificitiesButton class="buttonClass" showLabel="true"/>
+                <ReprintButton class="buttonClass" showLabel="true"/>
+            </t>
+        </xpath>
+
+    </t>
+
+</templates>

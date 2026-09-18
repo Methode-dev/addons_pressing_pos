@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="addons_pressing_pos.SpecificitiesDialog">
+        <Dialog size="'md'" title.translate="Specificities">
+            <div class="d-flex flex-wrap gap-2 mb-3">
+                <button t-foreach="props.treatments" t-as="treatment" t-key="treatment.id"
+                        type="button"
+                        class="btn btn-lg toggle-button"
+                        t-att-class="isSelected(treatment) ? 'btn-primary' : 'btn-secondary'"
+                        t-on-click="() => this.toggle(treatment)">
+                    <t t-esc="treatment.name"/>
+                </button>
+            </div>
+            <textarea rows="3"
+                      class="form-control form-control-lg"
+                      placeholder="Note for the workshop"
+                      t-model="state.note"/>
+            <t t-set-slot="footer">
+                <button class="btn btn-primary btn-lg lh-lg" t-on-click="confirm">Apply</button>
+                <button class="btn btn-secondary btn-lg lh-lg"
+                        t-on-click="() => props.close()">Discard</button>
+            </t>
+        </Dialog>
+    </t>
+
+    <t t-name="addons_pressing_pos.SpecificitiesButton">
+        <button class="btn btn-secondary btn-lg border-0 text-truncate o_specificities_button"
+                t-att-class="props.class"
+                title="Treatments and workshop note for the selected garment"
+                t-on-click="onClick">
+            <i class="fa fa-tags" role="img" aria-label="Specificities"/>
+            <span t-if="props.showLabel" class="ms-2">Specificities</span>
+        </button>
+    </t>
+
+</templates>

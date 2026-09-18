@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- noupdate="1" is what keeps this a one-shot: convert.py skips
+         <function> entirely unless the mode is 'init', so a later
+         `-u addons_pressing_pos` will not build a second shop. -->
+    <data noupdate="1">
+        <function model="pos.config" name="_laundry_setup_pressing_shop_on_install"/>
+    </data>
+</odoo>

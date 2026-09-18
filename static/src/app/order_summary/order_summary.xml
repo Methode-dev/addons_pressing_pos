@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="addons_pressing_pos.OrderSummary"
+       t-inherit="point_of_sale.OrderSummary"
+       t-inherit-mode="extension">
+        <xpath expr="//t[@t-set-slot='details']" position="inside">
+            <div t-if="pos.config.laundry_mode and currentOrder?.laundry_number_display"
+                 class="d-flex justify-content-between w-100 px-3 py-2 border-top o_laundry_ticket">
+                <span>Ticket n°</span>
+                <span class="fw-bolder" t-esc="currentOrder.laundry_number_display"/>
+            </div>
+            <div t-if="pos.config.laundry_mode and currentOrder?.pickup_datetime"
+                 class="d-flex justify-content-between w-100 px-3 py-2 border-top o_laundry_pickup">
+                <span>Ready for pickup</span>
+                <span class="fw-bolder" t-esc="currentOrder.formattedPickupDate"/>
+            </div>
+        </xpath>
+    </t>
+
+</templates>
