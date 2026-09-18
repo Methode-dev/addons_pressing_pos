@@ -1,4 +1,4 @@
-from odoo import api, fields, models
+from odoo import fields, models
 
 
 class PosConfig(models.Model):
@@ -13,13 +13,6 @@ class PosConfig(models.Model):
         help="Weekday numbers, Monday=0. '6' = closed on Sunday and Monday.",
     )
     laundry_sequence_id = fields.Many2one('ir.sequence', copy=False)
-
-    @api.model
-    def _load_pos_data_fields(self, config):
-        return super()._load_pos_data_fields(config) + [
-            'laundry_mode', 'laundry_lead_days', 'laundry_cutoff_hour',
-            'laundry_ready_hour', 'laundry_closed_weekdays',
-        ]
 
     def _laundry_get_sequence(self):
         self.ensure_one()
