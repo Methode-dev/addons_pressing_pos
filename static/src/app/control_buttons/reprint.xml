@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="addons_pressing_pos.ReprintButton">
+        <button class="btn btn-secondary btn-lg border-0 text-truncate o_laundry_reprint_button"
+                t-att-class="props.class"
+                t-att-disabled="!isAvailable"
+                title="Reprint the tags and tickets for this order"
+                t-on-click="onClick">
+            <i class="fa fa-print" role="img" aria-label="Reprint"/>
+            <span t-if="props.showLabel" class="ms-2">Reprint tags</span>
+        </button>
+    </t>
+
+</templates>

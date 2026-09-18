@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <!-- The customer's copy is the standard receipt plus the two things they
+         need in order to come back for the garments. Extending the core
+         template rather than shipping a separate component keeps every
+         fiscal and price detail — and the l10n_fr hash data — untouched. -->
+    <t t-name="addons_pressing_pos.CustomerTicket"
+       t-inherit="point_of_sale.OrderReceipt"
+       t-inherit-mode="extension">
+        <xpath expr="//ReceiptHeader" position="after">
+            <div t-if="order.laundry_number" class="laundry-customer">
+                <div class="laundry-customer-label">Ticket</div>
+                <div class="laundry-customer-number" t-esc="order.laundry_number_display"/>
+                <div class="laundry-customer-pickup">
+                    <span>Ready: </span>
+                    <span class="fw-bolder" t-esc="order.formattedPickupDate"/>
+                </div>
+            </div>
+        </xpath>
+    </t>
+
+</templates>

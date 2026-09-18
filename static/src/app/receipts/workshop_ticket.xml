@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="addons_pressing_pos.WorkshopTicket">
+        <div class="pos-receipt laundry-workshop">
+            <div class="laundry-workshop-title">WORKSHOP</div>
+
+            <div class="laundry-workshop-number" t-esc="order.laundry_number_display"/>
+
+            <div class="laundry-workshop-meta">
+                <div t-if="customerName" t-esc="customerName"/>
+                <div>
+                    <span>Ready: </span>
+                    <span class="fw-bolder" t-esc="order.formattedPickupDate"/>
+                </div>
+                <div>
+                    <span>Items: </span>
+                    <span class="fw-bolder" t-esc="garmentCount"/>
+                </div>
+            </div>
+
+            <div class="laundry-workshop-lines">
+                <div t-foreach="workshopLines" t-as="row" t-key="row.line.uuid"
+                     class="laundry-workshop-row">
+                    <div class="laundry-workshop-row-head">
+                        <span class="laundry-workshop-qty" t-esc="row.qty"/>
+                        <span class="laundry-workshop-name" t-esc="row.label"/>
+                    </div>
+                    <div t-if="row.treatments" class="laundry-workshop-treatments"
+                         t-esc="row.treatments"/>
+                    <div t-if="row.note" class="laundry-workshop-note" t-esc="row.note"/>
+                </div>
+            </div>
+        </div>
+    </t>
+
+</templates>

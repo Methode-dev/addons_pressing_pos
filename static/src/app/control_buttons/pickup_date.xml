@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="addons_pressing_pos.PickupDateDialog">
+        <Dialog size="'md'" title.translate="Ready for pickup">
+            <DateTimeInput
+                value="state.value"
+                type="'datetime'"
+                onChange.bind="onChange"/>
+            <t t-set-slot="footer">
+                <button class="btn btn-primary btn-lg lh-lg"
+                        t-att-disabled="!state.value"
+                        t-on-click="confirm">Apply</button>
+                <button class="btn btn-secondary btn-lg lh-lg"
+                        t-on-click="() => props.close()">Discard</button>
+            </t>
+        </Dialog>
+    </t>
+
+    <!-- Icon-only in the always-visible row: it already holds five controls at
+         counter width, and the pickup date is spelled out in the order summary
+         just above. The modal has room for a label. -->
+    <t t-name="addons_pressing_pos.PickupDateButton">
+        <button class="btn btn-secondary btn-lg border-0 text-truncate o_pickup_date_button"
+                t-att-class="props.class"
+                t-att-title="label or 'Set the pickup date'"
+                t-on-click="onClick">
+            <i class="fa fa-clock-o" role="img" aria-label="Pickup date"/>
+            <span t-if="props.showLabel" class="ms-2">Pickup date</span>
+        </button>
+    </t>
+
+</templates>
