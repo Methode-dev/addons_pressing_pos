@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_config_settings_view_form_laundry" model="ir.ui.view">
+        <field name="name">res.config.settings.form.laundry</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="point_of_sale.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//block[@id='pos_bills_and_receipts_section']" position="after">
+                <block title="Laundry" id="pos_laundry_section">
+                    <setting id="laundry_mode"
+                             help="Take garments in before payment: tag every item, number the order and print the workshop copy.">
+                        <field name="pos_laundry_mode"/>
+                    </setting>
+
+                    <setting string="Pickup date" invisible="not pos_laundry_mode"
+                             help="How the shop proposes a pickup date. A garment can override the lead time on its own product form.">
+                        <div class="content-group mt16">
+                            <div class="row">
+                                <label for="pos_laundry_lead_days" class="col-lg-4 o_light_label"
+                                       string="Lead time (days)"/>
+                                <field name="pos_laundry_lead_days"/>
+                            </div>
+                            <div class="row">
+                                <label for="pos_laundry_cutoff_hour" class="col-lg-4 o_light_label"
+                                       string="Cut-off hour"/>
+                                <field name="pos_laundry_cutoff_hour" widget="float_time"/>
+                            </div>
+                            <div class="row">
+                                <label for="pos_laundry_ready_hour" class="col-lg-4 o_light_label"
+                                       string="Ready at"/>
+                                <field name="pos_laundry_ready_hour" widget="float_time"/>
+                            </div>
+                            <div class="row">
+                                <label for="pos_laundry_closed_weekdays" class="col-lg-4 o_light_label"
+                                       string="Closed days"/>
+                                <field name="pos_laundry_closed_weekdays" placeholder="e.g. 6 for Sunday"/>
+                            </div>
+                            <div class="text-muted">
+                                Closed days are weekday numbers with Monday = 0, written together:
+                                <b>6</b> is Sunday, <b>06</b> is Sunday and Monday.
+                            </div>
+                        </div>
+                    </setting>
+
+                    <setting string="Documents to print" invisible="not pos_laundry_mode"
+                             help="Printed at intake, on top of the fiscal receipt the customer gets once the order is paid.">
+                        <div class="content-group mt16">
+                            <div>
+                                <field name="pos_laundry_print_tags" class="oe_inline"/>
+                                <span class="oe_inline ms-2">One tag per garment</span>
+                            </div>
+                            <div>
+                                <field name="pos_laundry_print_workshop" class="oe_inline"/>
+                                <span class="oe_inline ms-2">Workshop ticket</span>
+                            </div>
+                            <div>
+                                <field name="pos_laundry_print_deposit" class="oe_inline"/>
+                                <span class="oe_inline ms-2">Customer deposit ticket</span>
+                            </div>
+                            <div class="row mt16">
+                                <label for="pos_laundry_print_timing" class="col-lg-4 o_light_label"
+                                       string="Print them"/>
+                                <field name="pos_laundry_print_timing"/>
+                            </div>
+                        </div>
+                    </setting>
+
+                    <setting string="Customer required" invisible="not pos_laundry_mode"
+                             help="Refuse intake until a customer is set. The garments are tracked against them until pickup.">
+                        <field name="pos_laundry_require_partner"/>
+                    </setting>
+                </block>
+            </xpath>
+        </field>
+    </record>
+</odoo>

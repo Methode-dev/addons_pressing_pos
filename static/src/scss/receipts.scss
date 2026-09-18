@@ -1,0 +1,319 @@
+// Laundry print documents.
+//
+// Sizes are expressed in em, deliberately, against whatever font-size the
+// document's root inherits. Two very different contexts set that root, and a
+// single set of px values cannot satisfy both:
+//
+//   * the raster path — core adds `.pos-receipt-print` (512px / 30px) to the
+//     root, rasterises the element at its own clientWidth with pixelRatio 1
+//     and ships the bitmap to the ePOS printer. One CSS px is one printer dot.
+//   * the browser print path — `receipt_screen.scss` forces
+//     `.render-container .pos-receipt` to 266px / 14px !important. This is the
+//     path every machine without a thermal printer takes, so it is the one
+//     the layout is first judged on.
+//
+// 1em therefore means "as tall as ordinary receipt text here", and the whole
+// document scales with the medium. Only hairlines stay in px: a rule that
+// scaled down with everything else would drop below one dot and vanish under
+// the printer's dithering.
+//
+// If the tag media changes (a narrow label printer is under consideration),
+// nothing below should need touching — the new medium sets the root size.
+
+.laundry-tag {
+    text-align: center;
+    color: #000;
+
+    .laundry-tag-number {
+        font-size: 3.2em;
+        font-weight: 700;
+        line-height: 1;
+        letter-spacing: 0.04em;
+    }
+
+    .laundry-tag-index {
+        font-size: 1.45em;
+        font-weight: 700;
+        margin-top: 0.1em;
+    }
+
+    .laundry-tag-pickup {
+        margin-top: 0.4em;
+        padding: 0.25em 0;
+        border-top: 2px solid #000;
+        border-bottom: 2px solid #000;
+
+        .laundry-tag-pickup-label {
+            font-size: 0.8em;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        .laundry-tag-pickup-value {
+            font-size: 1.35em;
+            font-weight: 700;
+            line-height: 1.1;
+        }
+    }
+
+    .laundry-tag-customer {
+        margin-top: 0.35em;
+        font-size: 1.15em;
+        font-weight: 700;
+        // A long name must not push the tag wider than the paper.
+        overflow-wrap: anywhere;
+    }
+
+    .laundry-tag-label {
+        margin-top: 0.2em;
+        font-size: 1em;
+        overflow-wrap: anywhere;
+    }
+
+    .laundry-tag-treatments {
+        margin-top: 0.2em;
+        font-size: 0.87em;
+        overflow-wrap: anywhere;
+    }
+
+    .laundry-tag-note {
+        margin-top: 0.2em;
+        font-size: 0.8em;
+        font-style: italic;
+        overflow-wrap: anywhere;
+    }
+}
+
+.laundry-workshop {
+    color: #000;
+
+    .laundry-workshop-title {
+        font-size: 1.07em;
+        font-weight: 700;
+        letter-spacing: 0.2em;
+        text-align: center;
+    }
+
+    .laundry-workshop-number {
+        font-size: 2.67em;
+        font-weight: 700;
+        line-height: 1;
+        text-align: center;
+    }
+
+    .laundry-workshop-meta {
+        margin-top: 0.35em;
+        padding-bottom: 0.25em;
+        border-bottom: 2px solid #000;
+        font-size: 0.93em;
+    }
+
+    .laundry-workshop-row {
+        padding: 0.35em 0;
+        border-bottom: 1px dashed #000;
+    }
+
+    .laundry-workshop-row-head {
+        display: flex;
+        gap: 0.4em;
+        font-size: 1.07em;
+        font-weight: 700;
+    }
+
+    .laundry-workshop-qty {
+        min-width: 1.9em;
+    }
+
+    .laundry-workshop-name {
+        overflow-wrap: anywhere;
+    }
+
+    .laundry-workshop-treatments {
+        font-size: 0.93em;
+        padding-left: 2.3em;
+        overflow-wrap: anywhere;
+    }
+
+    .laundry-workshop-note {
+        font-size: 0.87em;
+        font-style: italic;
+        padding-left: 2.3em;
+        overflow-wrap: anywhere;
+    }
+}
+
+.laundry-deposit {
+    color: #000;
+
+    .laundry-deposit-title {
+        font-size: 1.07em;
+        font-weight: 700;
+        letter-spacing: 0.2em;
+        text-align: center;
+    }
+
+    .laundry-deposit-number {
+        font-size: 2.67em;
+        font-weight: 700;
+        line-height: 1;
+        text-align: center;
+    }
+
+    .laundry-deposit-pickup {
+        margin-top: 0.35em;
+        padding: 0.25em 0;
+        border-top: 2px solid #000;
+        border-bottom: 2px solid #000;
+        text-align: center;
+
+        .laundry-deposit-pickup-label {
+            font-size: 0.8em;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        .laundry-deposit-pickup-value {
+            font-size: 1.35em;
+            font-weight: 700;
+            line-height: 1.1;
+        }
+    }
+
+    .laundry-deposit-customer {
+        margin-top: 0.35em;
+        font-size: 1.07em;
+        font-weight: 700;
+        text-align: center;
+        overflow-wrap: anywhere;
+    }
+
+    .laundry-deposit-lines {
+        margin-top: 0.4em;
+    }
+
+    .laundry-deposit-row {
+        display: flex;
+        gap: 0.4em;
+        font-size: 0.93em;
+        padding: 0.1em 0;
+    }
+
+    .laundry-deposit-qty {
+        min-width: 1.9em;
+        font-weight: 700;
+    }
+
+    .laundry-deposit-name {
+        overflow-wrap: anywhere;
+    }
+
+    .laundry-deposit-totals {
+        margin-top: 0.35em;
+        padding-top: 0.25em;
+        border-top: 2px solid #000;
+        font-size: 1em;
+    }
+
+    .laundry-deposit-footer {
+        margin-top: 0.4em;
+        font-size: 0.8em;
+        font-style: italic;
+        text-align: center;
+    }
+}
+
+// The combined job used when no printer is configured: one browser print
+// dialog instead of one per document. The page break stands in for the
+// guillotine — without it the tags run into each other on the sheet and the
+// whole point of separate tags is lost.
+.laundry-batch {
+    .laundry-batch-item {
+        break-after: page;
+        page-break-after: always;   // Safari still reads the old property
+    }
+
+    .laundry-batch-item:last-child {
+        break-after: auto;
+        page-break-after: auto;
+    }
+}
+
+.laundry-customer {
+    margin: 0.35em 0;
+    padding: 0.25em 0;
+    border-top: 2px solid #000;
+    border-bottom: 2px solid #000;
+    text-align: center;
+
+    .laundry-customer-label {
+        font-size: 0.8em;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+    }
+
+    .laundry-customer-number {
+        font-size: 2.4em;
+        font-weight: 700;
+        line-height: 1;
+    }
+
+    .laundry-customer-pickup {
+        font-size: 0.93em;
+    }
+}
+
+// On-screen preview of the print documents (development aid). The documents
+// themselves keep their print geometry; only the surrounding chrome is
+// screen-oriented.
+.laundry-preview {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    align-items: flex-start;
+
+    .laundry-preview-item {
+        border: 1px solid #ccc;
+        padding: 8px;
+        background: #fff;
+    }
+
+    .laundry-preview-caption {
+        font-size: 13px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: #666;
+        margin-bottom: 6px;
+    }
+}
+
+// Monochrome print proof: the rasterised bitmap, shown at 1 dot per pixel.
+.laundry-proof-status {
+    font-size: 13px;
+    color: #666;
+    margin-bottom: 12px;
+}
+
+.laundry-proof {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    align-items: flex-start;
+
+    .laundry-proof-item {
+        border: 1px solid #ccc;
+        padding: 8px;
+        background: #fff;
+    }
+
+    .laundry-proof-caption {
+        font-size: 13px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: #666;
+        margin-bottom: 6px;
+    }
+
+    canvas {
+        display: block;
+    }
+}

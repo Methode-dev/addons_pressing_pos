@@ -15,4 +15,24 @@
         <field name="code">NOST</field>
         <field name="sequence">30</field>
     </record>
+    <record id="treatment_press_only" model="laundry.treatment">
+        <field name="name">Repassage seul</field>
+        <field name="code">REPA</field>
+        <field name="sequence">40</field>
+    </record>
+    <record id="treatment_leather" model="laundry.treatment">
+        <field name="name">Cuir / Daim</field>
+        <field name="code">CUIR</field>
+        <field name="sequence">50</field>
+    </record>
+    <record id="treatment_whitening" model="laundry.treatment">
+        <field name="name">Blanchiment</field>
+        <field name="code">BLAN</field>
+        <field name="sequence">60</field>
+    </record>
+    <record id="treatment_urgent" model="laundry.treatment">
+        <field name="name">Urgent</field>
+        <field name="code">URGT</field>
+        <field name="sequence">70</field>
+    </record>
 </odoo>

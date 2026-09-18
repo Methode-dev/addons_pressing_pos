@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="addons_pressing_pos.LaundryTag">
+        <div class="pos-receipt laundry-tag">
+            <div class="laundry-tag-number" t-esc="order.laundry_number_display"/>
+
+            <div class="laundry-tag-index">
+                <t t-esc="tag.index"/>/<t t-esc="tag.total"/>
+            </div>
+
+            <div class="laundry-tag-pickup">
+                <div class="laundry-tag-pickup-label">Ready</div>
+                <div class="laundry-tag-pickup-value" t-esc="order.formattedPickupDate"/>
+            </div>
+
+            <div t-if="customerName" class="laundry-tag-customer" t-esc="customerName"/>
+
+            <div class="laundry-tag-label" t-esc="tag.label"/>
+
+            <div t-if="treatmentLabels" class="laundry-tag-treatments" t-esc="treatmentLabels"/>
+
+            <div t-if="tag.line.laundryNoteText" class="laundry-tag-note" t-esc="tag.line.laundryNoteText"/>
+        </div>
+    </t>
+
+</templates>

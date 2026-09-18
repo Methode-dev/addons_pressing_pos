@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="addons_pressing_pos.LaundryDocumentBatch">
+        <!-- No `pos-receipt` class on this wrapper, on purpose: the print
+             stylesheet gives that class `contain: paint`, which turns the
+             element into a fragmentation-proof box and swallows the page
+             breaks between the documents inside it. Each document keeps the
+             class for itself, where it belongs. -->
+        <div class="laundry-batch">
+            <div t-foreach="props.documents" t-as="doc" t-key="doc_index"
+                 class="laundry-batch-item">
+                <t t-component="doc.component" t-props="doc.props"/>
+            </div>
+        </div>
+    </t>
+
+</templates>

@@ -15,6 +15,13 @@ class ProductTemplate(models.Model):
 
     @api.model
     def _load_pos_data_fields(self, config):
-        return super()._load_pos_data_fields(config) + [
+        fields = super()._load_pos_data_fields(config)
+        # An empty list means "load every field" (pos.load.mixin passes it
+        # straight to read(), where [] reads all). Appending to it would turn
+        # that into a whitelist and strip the payload, so leave it alone —
+        # our fields are already covered.
+        if not fields:
+            return fields
+        return fields + [
             'is_laundry_item', 'laundry_lead_days',
         ]

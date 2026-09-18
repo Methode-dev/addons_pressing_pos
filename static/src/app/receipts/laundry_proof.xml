@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="addons_pressing_pos.LaundryProofDialog">
+        <Dialog size="'xl'" title.translate="Print proof (monochrome)">
+            <div class="laundry-proof-status" t-esc="state.status"/>
+            <div class="laundry-proof" t-ref="root"/>
+            <t t-set-slot="footer">
+                <button class="btn btn-secondary btn-lg lh-lg"
+                        t-on-click="() => props.close()">Close</button>
+            </t>
+        </Dialog>
+    </t>
+
+</templates>

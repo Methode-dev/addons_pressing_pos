@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="addons_pressing_pos.LaundryPreviewDialog">
+        <Dialog size="'xl'" title.translate="Laundry documents preview">
+            <div class="laundry-preview">
+                <div t-foreach="documents" t-as="doc" t-key="doc_index"
+                     class="laundry-preview-item">
+                    <div class="laundry-preview-caption" t-esc="doc.label"/>
+                    <div class="pos-receipt-print">
+                        <t t-component="doc.component" t-props="doc.props"/>
+                    </div>
+                </div>
+            </div>
+            <t t-set-slot="footer">
+                <button class="btn btn-secondary btn-lg lh-lg"
+                        t-on-click="() => props.close()">Close</button>
+            </t>
+        </Dialog>
+    </t>
+
+</templates>

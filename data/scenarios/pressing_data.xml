@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Catalogue for the dedicated pressing shop.
+
+    Loaded by pos.config._load_onboarding_pressing_demo_data(), not from the
+    manifest: it is scenario data for one point of sale, exactly like core's
+    clothes/bakery/furniture scenarios, and a database that never creates that
+    shop has no use for these products.
+
+    Prices are plausible counter prices, not a real tariff.
+-->
+<odoo>
+    <data noupdate="1">
+
+        <record id="product_category_pressing" model="product.category">
+            <field name="name">Pressing</field>
+        </record>
+
+        <!-- POS categories -->
+
+        <record id="pos_category_pressing_clothes" model="pos.category">
+            <field name="name">Vêtements</field>
+            <field name="sequence">1</field>
+        </record>
+
+        <record id="pos_category_pressing_household" model="pos.category">
+            <field name="name">Maison</field>
+            <field name="sequence">2</field>
+        </record>
+
+        <record id="pos_category_pressing_services" model="pos.category">
+            <field name="name">Services</field>
+            <field name="sequence">3</field>
+        </record>
+
+        <!-- Garments.
+             laundry_lead_days is left at 0 wherever the shop's own default
+             (2 days) is right; only the slow items override it, because the
+             order takes the slowest line. -->
+
+        <record id="product_pressing_chemise" model="product.template">
+            <field name="name">Chemise</field>
+            <field name="list_price">3.50</field>
+            <field name="type">consu</field>
+            <field name="available_in_pos" eval="True"/>
+            <field name="is_laundry_item" eval="True"/>
+            <field name="categ_id" ref="product_category_pressing"/>
+            <field name="pos_categ_ids" eval="[Command.set([ref('pos_category_pressing_clothes')])]"/>
+        </record>
+
+        <record id="product_pressing_pantalon" model="product.template">
+            <field name="name">Pantalon</field>
+            <field name="list_price">7.90</field>
+            <field name="type">consu</field>
+            <field name="available_in_pos" eval="True"/>
+            <field name="is_laundry_item" eval="True"/>
+            <field name="categ_id" ref="product_category_pressing"/>
+            <field name="pos_categ_ids" eval="[Command.set([ref('pos_category_pressing_clothes')])]"/>
+        </record>
+
+        <record id="product_pressing_pull" model="product.template">
+            <field name="name">Pull</field>
+            <field name="list_price">8.50</field>
+            <field name="type">consu</field>
+            <field name="available_in_pos" eval="True"/>
+            <field name="is_laundry_item" eval="True"/>
+            <field name="categ_id" ref="product_category_pressing"/>
+            <field name="pos_categ_ids" eval="[Command.set([ref('pos_category_pressing_clothes')])]"/>
+        </record>
+
+        <record id="product_pressing_robe" model="product.template">
+            <field name="name">Robe</field>
+            <field name="list_price">14.50</field>
+            <field name="type">consu</field>
+            <field name="available_in_pos" eval="True"/>
+            <field name="is_laundry_item" eval="True"/>
+            <field name="categ_id" ref="product_category_pressing"/>
+            <field name="pos_categ_ids" eval="[Command.set([ref('pos_category_pressing_clothes')])]"/>
+        </record>
+
+        <record id="product_pressing_veste" model="product.template">
+            <field name="name">Veste</field>
+            <field name="list_price">12.00</field>
+            <field name="type">consu</field>
+            <field name="available_in_pos" eval="True"/>
+            <field name="is_laundry_item" eval="True"/>
+            <field name="categ_id" ref="product_category_pressing"/>
+            <field name="pos_categ_ids" eval="[Command.set([ref('pos_category_pressing_clothes')])]"/>
+        </record>
+
+        <record id="product_pressing_costume" model="product.template">
+            <field name="name">Costume 2 pièces</field>
+            <field name="list_price">19.00</field>
+            <field name="type">consu</field>
+            <field name="available_in_pos" eval="True"/>
+            <field name="is_laundry_item" eval="True"/>
+            <field name="laundry_lead_days">3</field>
+            <field name="categ_id" ref="product_category_pressing"/>
+            <field name="pos_categ_ids" eval="[Command.set([ref('pos_category_pressing_clothes')])]"/>
+        </record>
+
+        <record id="product_pressing_manteau" model="product.template">
+            <field name="name">Manteau</field>
+            <field name="list_price">18.00</field>
+            <field name="type">consu</field>
+            <field name="available_in_pos" eval="True"/>
+            <field name="is_laundry_item" eval="True"/>
+            <field name="laundry_lead_days">3</field>
+            <field name="categ_id" ref="product_category_pressing"/>
+            <field name="pos_categ_ids" eval="[Command.set([ref('pos_category_pressing_clothes')])]"/>
+        </record>
+
+        <record id="product_pressing_cravate" model="product.template">
+            <field name="name">Cravate</field>
+            <field name="list_price">4.50</field>
+            <field name="type">consu</field>
+            <field name="available_in_pos" eval="True"/>
+            <field name="is_laundry_item" eval="True"/>
+            <field name="categ_id" ref="product_category_pressing"/>
+            <field name="pos_categ_ids" eval="[Command.set([ref('pos_category_pressing_clothes')])]"/>
+        </record>
+
+        <!-- Household -->
+
+        <record id="product_pressing_couette_1p" model="product.template">
+            <field name="name">Couette 1 personne</field>
+            <field name="list_price">24.00</field>
+            <field name="type">consu</field>
+            <field name="available_in_pos" eval="True"/>
+            <field name="is_laundry_item" eval="True"/>
+            <field name="laundry_lead_days">4</field>
+            <field name="categ_id" ref="product_category_pressing"/>
+            <field name="pos_categ_ids" eval="[Command.set([ref('pos_category_pressing_household')])]"/>
+        </record>
+
+        <record id="product_pressing_couette_2p" model="product.template">
+            <field name="name">Couette 2 personnes</field>
+            <field name="list_price">32.00</field>
+            <field name="type">consu</field>
+            <field name="available_in_pos" eval="True"/>
+            <field name="is_laundry_item" eval="True"/>
+            <field name="laundry_lead_days">4</field>
+            <field name="categ_id" ref="product_category_pressing"/>
+            <field name="pos_categ_ids" eval="[Command.set([ref('pos_category_pressing_household')])]"/>
+        </record>
+
+        <record id="product_pressing_rideau" model="product.template">
+            <field name="name">Rideau</field>
+            <field name="list_price">9.00</field>
+            <field name="type">consu</field>
+            <field name="available_in_pos" eval="True"/>
+            <field name="is_laundry_item" eval="True"/>
+            <field name="laundry_lead_days">3</field>
+            <field name="categ_id" ref="product_category_pressing"/>
+            <field name="pos_categ_ids" eval="[Command.set([ref('pos_category_pressing_household')])]"/>
+        </record>
+
+        <record id="product_pressing_nappe" model="product.template">
+            <field name="name">Nappe</field>
+            <field name="list_price">11.00</field>
+            <field name="type">consu</field>
+            <field name="available_in_pos" eval="True"/>
+            <field name="is_laundry_item" eval="True"/>
+            <field name="categ_id" ref="product_category_pressing"/>
+            <field name="pos_categ_ids" eval="[Command.set([ref('pos_category_pressing_household')])]"/>
+        </record>
+
+        <record id="product_pressing_tapis" model="product.template">
+            <field name="name">Tapis</field>
+            <field name="list_price">22.00</field>
+            <field name="type">consu</field>
+            <field name="available_in_pos" eval="True"/>
+            <field name="is_laundry_item" eval="True"/>
+            <field name="laundry_lead_days">6</field>
+            <field name="categ_id" ref="product_category_pressing"/>
+            <field name="pos_categ_ids" eval="[Command.set([ref('pos_category_pressing_household')])]"/>
+        </record>
+
+        <!-- Services and retail.
+             Deliberately NOT laundry items: nothing here goes on a hanger, so
+             none of them may produce a tag or extend the lead time. They are
+             in the shop precisely so that case gets exercised. -->
+
+        <record id="product_pressing_retouche" model="product.template">
+            <field name="name">Retouche ourlet</field>
+            <field name="list_price">12.00</field>
+            <field name="type">service</field>
+            <field name="available_in_pos" eval="True"/>
+            <field name="categ_id" ref="product_category_pressing"/>
+            <field name="pos_categ_ids" eval="[Command.set([ref('pos_category_pressing_services')])]"/>
+        </record>
+
+        <record id="product_pressing_fermeture" model="product.template">
+            <field name="name">Réparation fermeture éclair</field>
+            <field name="list_price">15.00</field>
+            <field name="type">service</field>
+            <field name="available_in_pos" eval="True"/>
+            <field name="categ_id" ref="product_category_pressing"/>
+            <field name="pos_categ_ids" eval="[Command.set([ref('pos_category_pressing_services')])]"/>
+        </record>
+
+        <record id="product_pressing_housse" model="product.template">
+            <field name="name">Housse de protection</field>
+            <field name="list_price">1.50</field>
+            <field name="type">consu</field>
+            <field name="available_in_pos" eval="True"/>
+            <field name="categ_id" ref="product_category_pressing"/>
+            <field name="pos_categ_ids" eval="[Command.set([ref('pos_category_pressing_services')])]"/>
+        </record>
+
+    </data>
+</odoo>
