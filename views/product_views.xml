@@ -9,6 +9,8 @@
                 <field name="is_laundry_item"/>
                 <field name="laundry_lead_days"
                        invisible="not is_laundry_item"/>
+                <field name="laundry_emoji"
+                       invisible="not is_laundry_item" placeholder="👔"/>
             </xpath>
         </field>
     </record>
